@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript</title>
+    <style>
+        body{
+            background-color: #c9f3ef;
+            color: #3e1787;
+            text-align: center;
+            border: 4px solid #4c4eaf;
+        }
+        p{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h1 {
+            color: green;
+            font-size: 35px;
+        }
+        button{
+            background-color: #4f4caf;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            margin: 10px 0px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }  
+        #off-btn{
+            display: none;
+        } 
+    </style>
+    
+</head>
+<body onkeypress="kepress()" onresize="myclick()">
+    <!-- content -->
+    <h2>javascrip practice</h2>
+    <p id="content" class="cont">Content change</p>
+    <button type="button" onclick='hello()'>Click Me!</button>
+    <br>
+    <!-- tagname   -->
+    <h2 id="accsestag">DOM tagName Property</h2>
+    <button onclick="submitbtn()">Submit</button>
+    <p id="addw"></p>
+    <br>
+    <!-- change html attribute -->
+    <button onclick="onbulb()">On light</button>
+    <img id="myImage" src="images/bulb-off.gif" style="width:100px">
+    <button  onclick="offbulb()">Off light</button>
+    <br>
+    <!-- change html attribute -->
+    <button id="on-btn" onclick="onbulb2()">On light</button>
+    <img id="myImage2" src="images/bulb-off.gif" style="width:100px">
+    <br>
+    <!-- query selector -->
+    <div class="test-btn">asad</div> 
+    <div class="test-btn">ehtisham</div> 
+    <div class="test-btn">zaheer </div> 
+    <div class="test-btn">zafeer</div> 
+  
+    <button onClick="qselector()"> 
+        querySelector 
+    </button> 
+  
+    <button onClick="qselectorall()"> 
+        querySelectorAll 
+    </button> 
+    <br>
+    <!-- access key -->
+    <a href="https://asadmanzoor.portfolio.com.pk/" id="portfolio">Asad manzoor (press alt + A)</a>
+    <!-- practice  events  -->
+    <p ondblclick="myclick()">Doubleclick</p>
+    <p oncontextmenu="myclick()">Right click</p>
+    <p onmousedown="myclick()">mouse down</p>
+    <p onmouseout="myclick()">mouse out</p>
+    <p onmouseenter="myclick()" style="border: 1px solid #3e1787;">mouse hover</p>
+
+
+
+    <!-- js/   -->
+    <script>
+       
+        function hello(){
+            document.getElementById("content").innerHTML = "New content";
+            // class name 
+            // document.getElementsByClassName("cont").style.color = "red";
+            document.getElementById("content").style.fontSize = "50px";
+        }
+
+        function submitbtn() {
+                    var w = document.getElementById("accsestag").tagName;
+                    document.getElementById("addw").innerHTML = "Welcome boys";
+                } 
+// bulb 1
+        function onbulb(){
+            document.getElementById("myImage").src = "images/bulb-on.gif";
+        }
+        function offbulb(){
+            document.getElementById("myImage").src = "images/bulb-off.gif";
+        }
+// bulb 2
+        function onbulb2(){
+            document.getElementById("myImage2").src = "images/bulb-on.gif";
+            let turnoff = document.getElementById("on-btn");
+            turnoff.innerHTML = "Turn off";
+            if(turnoff.innerHTML == "Turn off"){
+                turnoff.setAttribute("onclick", "offbulb2()");    
+            }
+        }
+       function offbulb2(){
+            document.getElementById("myImage2").src = "images/bulb-off.gif";
+            let turnon = document.getElementById("on-btn");
+            turnon.innerHTML = "Turn on";
+            if(turnon.innerHTML == "Turn on"){
+                turnon.setAttribute("onclick", "onbulb2()");    
+            }
+       }
+    //    events
+       function myclick(){
+           alert("You double clicked me");
+       }
+       function kepress(){
+           alert("You pressed a key");
+       }
+
+    //    query selector
+    function qselector() { 
+            document.querySelector(".test-btn").style.color = "red"; 
+        } 
+  
+        function qselectorall() { 
+            var x = document .querySelectorAll(".test-btn"); 
+  
+            for (var i = 0; i < x.length; i++) { 
+                x[i].style.color = "pink"; 
+            } 
+        }  
+        // access key
+        document.getElementById("portfolio").accessKey = "a";
+    </script>
+</body>
+</html>

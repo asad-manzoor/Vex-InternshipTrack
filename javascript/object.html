@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript</title>
+    <style>
+        body{
+            background-color: #c9f3ef;
+            color: #3e1787;
+            text-align: center;
+            border: 4px solid #4c4eaf;
+        }
+        p{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        button{
+            background-color: #4f4caf;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            margin: 10px 0px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }  
+        li{
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+        
+    
+</head>
+<body onkeypress="kepress()" onresize="myclick()">
+    <!-- content -->
+    <h2>javascrip practice</h2>
+    
+    <ul id="myList">
+        <li>Aasd</li>
+        <li>Zaheera</li>
+        <li>Zafeer</li>
+      </ul>
+      <button onclick="myFunction()">Append</button>
+
+
+
+    <script>
+        let person = {
+            firstName: "Asad",
+            lastName: "manzoor",
+            age: 21,
+            desc: function() {
+            return "my name is" + this.firstName + " " + this.lastName + " and i am " + this.age + " years old";
+            }
+            
+        };
+        //accsessing object
+        console.log(person.firstName);
+        console.log(person["lastName"]); 
+        person.age = 22;
+        person.job = "Software Developer";
+        console.log(person.job);
+        delete person.age;
+        // in operator
+        if ("firstName" in person) {
+        console.log("The person has a first name!");
+        }
+        //for in loop
+        for (let key in person) {
+        console.log(key + ": " + person[key]);
+        }
+        console.log(person.fullName());
+
+
+ 
+        function myFunction() {
+        const element = document.createElement("li");
+        const text = document.createTextNode("Ehtisham");
+        element.appendChild(text);
+        document.getElementById("myList").appendChild(element);
+        }
+    </script>
+</body>
+</html
