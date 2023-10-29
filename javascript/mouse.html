@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse move</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html{
+            width: 100%;
+            height: 100%;
+        }
+        .main{
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cursor{
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            color: black;
+            mix-blend-mode: difference;
+
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+        h1{
+            font-size: 10vw;
+            /* blend mode */
+          
+        }
+       
+    </style>
+</head>
+<body>
+   <div class="main">
+        <div class="cursor"></div>
+        <h1 > Asad manzoor</h1>
+   </div>
+   <script>
+    var screen = document.querySelector(".main");
+    var cursr = document. querySelector(".cursor");
+    screen.addEventListener("mousemove", function(e){
+        var x = e.clientX - 2;
+        var y = e.clientY - 2;
+        cursr.style.left = x + "px";
+        cursr.style.top = y + "px";
+    })
+   </script>
+    
+</body>
+</html>

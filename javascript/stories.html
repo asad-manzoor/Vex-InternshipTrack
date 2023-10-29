@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse move</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+        }
+        .card{
+            width: 300px;
+            height: 450px;
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.763), rgba(221, 107, 215, 0.835));
+            color: white;
+            border-radius: 10px;
+            position: relative;
+      
+        }
+        .stories{
+            width: 100%;
+            height: 120px;
+            background-color: transparent;
+            border-radius: 10px;
+            padding: 20px;
+            white-space: nowrap;
+            overflow-x: scroll;
+            overflow-y: hidden;
+
+        }
+        .stories::-webkit-scrollbar{
+            width: 0px;
+        }
+        .story{
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgb(255, 0, 0);
+            border-radius: 50px;
+            overflow: hidden;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .story img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .full-screen{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+    </style>
+</head>
+<body>
+    
+   <div class="card">
+        <div class="full-screen"></div>
+         <div class="stories">
+         </div>
+   </div>
+
+
+   <script>
+        var arr = [
+            {dp: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bW9kZWx8ZW58MHx8MHx8fDA%3D", story: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bW9kZWwlMjBib3l8ZW58MHx8MHx8fDA%3D"}
+            , {dp: "https://images.unsplash.com/photo-1625053120942-13c058603c18?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bW9kbGV8ZW58MHx8MHx8fDA%3D", story: "https://plus.unsplash.com/premium_photo-1663013216853-2cd727c3f46f?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3Rvcmllc3xlbnwwfHwwfHx8MA%3D%3D"},
+            {dp: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fG1vZGVsJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D", story: "https://plus.unsplash.com/premium_photo-1663099949677-62bd40b6418a?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c3Rvcmllc3xlbnwwfHwwfHx8MA%3D%3D"}
+            , {dp: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1vZGVsJTIwYm95fGVufDB8fDB8fHww", story: "https://images.unsplash.com/photo-1542178432-52211bc52073?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHN0b3JpZXN8ZW58MHx8MHx8fDA%3D"},
+            {dp: "https://images.unsplash.com/photo-1519238359922-989348752efb?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG1vZGVsJTIwYm95fGVufDB8fDB8fHww", story: "https://images.unsplash.com/photo-1600031830097-10d2791a3b83?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzB8fHN0b3JpZXN8ZW58MHx8MHx8fDA%3D"}
+            , {dp: "https://images.unsplash.com/photo-1604286603598-95631ffbd538?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9kZWwlMjBib3l8ZW58MHx8MHx8fDA%3D", story: "https://plus.unsplash.com/premium_photo-1676736592730-bfd847c0c8c8?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bW9kZWwlMjBib3l8ZW58MHx8MHx8fDA%3D"}
+    ];
+    var stories = document.querySelector(".stories");
+    var clutter="";
+    arr.forEach(function(elme, index){
+        clutter +=`<div class="story">
+                <img id="${index}" src="${elme.dp}" alt="">
+              </div>`;
+    });
+    stories.innerHTML = clutter;
+    stories.addEventListener("click",function(dets){
+        if(dets.target.id == ""){
+            return;
+        }
+        document.querySelector(".full-screen").style.display = "block";
+        document.querySelector(".full-screen").style.backgroundImage = `url(${arr[dets.target.id].story})`;
+        setTimeout(function(){
+            document.querySelector(".full-screen").style.display = "none";
+        }, 3000);
+    })
+   </script>
+    
+</body>
+</html>
